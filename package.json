@@ -11,6 +11,7 @@
     "db:migrate": "tsx src/drizzle/migrate.ts"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.31.2",
     "fast-xlsx-reader": "^0.3.1",
