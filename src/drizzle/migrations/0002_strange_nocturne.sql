@@ -1,0 +1,1 @@
+ALTER TABLE "ref_split_type" ALTER COLUMN "output_split" SET DATA TYPE char(1);

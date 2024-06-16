@@ -1,0 +1,2 @@
+ALTER TABLE "ref_splits_category_to_split_type_mapping" ALTER COLUMN "split_code" SET DATA TYPE varchar(50);--> statement-breakpoint
+ALTER TABLE "ref_splits_category_to_split_type_mapping" ALTER COLUMN "category_code" SET DATA TYPE varchar(20);

@@ -1,0 +1,1 @@
+ALTER TABLE "ref_split_category_to_base_rate_mapping" ALTER COLUMN "base_rate_category_code" SET DATA TYPE varchar(5);

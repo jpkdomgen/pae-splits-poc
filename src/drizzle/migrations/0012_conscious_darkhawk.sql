@@ -1,0 +1,1 @@
+ALTER TABLE "split_calculation_override" ALTER COLUMN "split_type_code" SET DATA TYPE varchar(50);
