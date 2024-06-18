@@ -6,6 +6,7 @@ import {
   getSplitsCategory,
   getSplitsForSplitsCategory,
   getSplitsVariantData,
+  getSplitsVariantOverrideData
 } from "../../../lib/actions";
 
 export default function PolicyHomePage() {
@@ -15,6 +16,7 @@ export default function PolicyHomePage() {
   const [splitCategory, setSplitCategory] = useState();
   const [splitsForCategory, setSplitsForCategory] = useState([]);
   const [splitVariant, setSplitVariant] = useState([]);
+  const [splitVariantOverride, setSplitVariantOverride] = useState([]);
 
   function handleSubmit(event) {
     console.log(event.get("policyNumber"));
@@ -129,6 +131,18 @@ export default function PolicyHomePage() {
       console.log(`Splits Variant Data ${splitsVariantData}`);
     })();
   }
+  function handleGetSplitVariantOverride() {
+    console.log("Get Splits Variant override");
+    (async () => {
+      const splitsVariantOverrideData = await getSplitsVariantOverrideData(
+        policyData,
+        splitsForCategory
+      );
+
+      setSplitVariantOverride(splitsVariantOverrideData);
+      console.log(`Splits Variant override Data ${splitsVariantOverrideData}`);
+    })();
+  }
 
   return (
     <>
@@ -223,6 +237,42 @@ export default function PolicyHomePage() {
               })}
             </tbody>
           </table>
+
+        </div>
+
+        <div className="row">
+          <form action={handleGetSplitVariantOverride}>
+            <button type="submit" className="btn btn-primary">
+              Find Split Variant Override for Poilcy and Item
+            </button>
+          </form>
+          {/* { <p>Splits Variant: {JSON.stringify(splitVariantOverride, null, 2)}</p> } */}
+          { <table>
+            <thead>
+              <tr>
+                <th scope="col">splitCode</th>
+                <th scope="col">calculationMethod</th>
+                <th scope="col">calcuationValue</th>
+                <th scope="col">calculationMethod</th>
+                <th scope="col">formula</th>
+                <th scope="col">roundingCalculation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {splitVariantOverride?.map((split) => {
+                return (
+                  <tr>
+                    <td>{split.splitCode}</td>
+                    <td>{split.calculationMethod}</td>
+                    <td>{split.calcuationValue}</td>
+                    <td>{split.calculationMethod}</td>
+                    <td>{split.formula}</td>
+                    <td>{split.roundingCalculation}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table> }
 
         </div>
       </div>

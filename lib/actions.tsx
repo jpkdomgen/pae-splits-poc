@@ -3,6 +3,7 @@
 import {
   RefSplitCategoryToSplitTypeMapping,
   RefSplitVariantMaster,
+  RefSplitsCalcualtionOverride,
   RefSpltCategory,
 } from "@/drizzle/schema";
 import { db } from "../src/drizzle/db";
@@ -58,6 +59,8 @@ export async function getSplitsForSplitsCategory(splitsCategoryCode: string) {
       eq(RefSplitCategoryToSplitTypeMapping.categoryCode, splitsCategoryCode)
     );
 
+    
+
   console.log(splitsForCategory);
 
   return splitsForCategory;
@@ -112,6 +115,18 @@ export async function getSplitsVariantData(policyData: any, splitsData: []) {
 //       splitsVariantData.push(sVData);
 //   });
 
+  console.log(splitsVariantData);
+  return splitsVariantData;
+}
+
+
+export async function getSplitsVariantOverrideData(policyData: any, splitsData: []) {
+  let splitsVariantData = [];
+
+  splitsVariantData = await db
+        .select()
+        .from(RefSplitsCalcualtionOverride)
+        .where(inArray(RefSplitsCalcualtionOverride.id, [27,10,24,12,26,28,39,51,46,52,53,59,61,60]));
   console.log(splitsVariantData);
   return splitsVariantData;
 }
